@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+	<head>
+		<title>
+			Sound Simulator
+		</title>
+		<script>
+			var numkeys = 12;
+			var flag = [];
+			var mode = ["piano1", "piano2", "piano3"];
+			var limit = 3;
+			var current = 0;
+			window.onload = function(){
+				for (var i = 0; i < numkeys; ++i){flag.push(0);}
+			}
+			window.onkeydown = function(e){
+				e.preventDefault();
+				var i = interpret(e.keyCode);
+				if (i == -1){return;}
+				var s = i.toString();
+				if (flag[i] == 1){return;}
+				document.getElementById(s).pause();
+				document.getElementById(s).load();
+				document.getElementById(s).play();
+				flag[i] = 1;
+			}
+			window.onkeyup = function(e){
+				e.preventDefault();
+				var i = interpret(e.keyCode);
+				if (i == -1){return;}
+				flag[i] = 0;
+			}
+			function interpret(k){
+				if (k == 90){return 0;}
+				else if (k == 83){return 1;}
+				else if (k == 88){return 2;}
+				else if (k == 67){return 3;}
+				else if (k == 70){return 4;}
+				else if (k == 86){return 5;}
+				else if (k == 71){return 6;}
+				else if (k == 66){return 7;}
+				else if (k == 78){return 8;}
+				else if (k == 74){return 9;}
+				else if (k == 77){return 10;}
+				else if (k == 75){return 11;}
+				else if (k == 9){change_mode();}
+				return -1;
+			}
+			function change_mode(){
+				++current;
+				if (current >= limit){current = 0;}
+				alert(mode[current]);
+				for (var i = 0; i < numkeys; ++i){
+					var s = i.toString();
+					document.getElementById(s).src = "Sound/" + mode[current] + "_" + s + ".wav";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<audio id="0" src="Sound/piano1_0.wav"></audio>
+		<audio id="1" src="Sound/piano1_1.wav"></audio>
+		<audio id="2" src="Sound/piano1_2.wav"></audio>
+		<audio id="3" src="Sound/piano1_3.wav"></audio>
+		<audio id="4" src="Sound/piano1_4.wav"></audio>
+		<audio id="5" src="Sound/piano1_5.wav"></audio>
+		<audio id="6" src="Sound/piano1_6.wav"></audio>
+		<audio id="7" src="Sound/piano1_7.wav"></audio>
+		<audio id="8" src="Sound/piano1_8.wav"></audio>
+		<audio id="9" src="Sound/piano1_9.wav"></audio>
+		<audio id="10" src="Sound/piano1_10.wav"></audio>
+		<audio id="11" src="Sound/piano1_11.wav"></audio>
+	</body>
+</html>
