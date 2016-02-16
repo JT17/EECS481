@@ -7,8 +7,7 @@
 		<script>
 			var numkeys = 12;
 			var flag = [];
-			var mode = ["piano1", "piano2", "piano3"];
-			var limit = 3;
+			var mode = ["piano1", "piano2", "piano3", "piano4", "piano5"];
 			var current = 0;
 			window.onload = function(){
 				for (var i = 0; i < numkeys; ++i){flag.push(0);}
@@ -48,7 +47,7 @@
 			}
 			function change_mode(){
 				++current;
-				if (current >= limit){current = 0;}
+				if (current >= mode.length){current = 0;}
 				alert(mode[current]);
 				for (var i = 0; i < numkeys; ++i){
 					var s = i.toString();
